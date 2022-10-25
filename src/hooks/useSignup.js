@@ -35,7 +35,6 @@ export const useSignup = () => {
       dispatch({ type: 'LOGIN', payload: res.user })
 
       if (!isCancelled) {
-        console.log('useSignUp - cleaning up')
         setIsPending(false)
         setError(null)
       }
@@ -48,7 +47,10 @@ export const useSignup = () => {
   }
 
   useEffect(() => {
-    return () => setIsCancelled(true)
+    return () => {
+      console.log('useSignup CLEAR UP')
+      // setIsCancelled(true)
+    }
   }, [])
 
   return { signup, error, isPending }
