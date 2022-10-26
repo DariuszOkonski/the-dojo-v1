@@ -59,7 +59,7 @@ export const useSignup = () => {
 
   useEffect(() => {
     return () => {
-      console.log("useSignup CLEAR UP");
+      // console.log("useSignup CLEAR UP");
       // setIsCancelled(true);
     };
   }, []);

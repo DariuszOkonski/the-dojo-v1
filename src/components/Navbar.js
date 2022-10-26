@@ -9,7 +9,7 @@ function Navbar() {
   const { logout, error, isPending } = useLogout();
   const { user } = useAuthContext();
 
-  console.log({ isPending });
+  // console.log({ isPending });
   return (
     <div className="navbar">
       <ul>

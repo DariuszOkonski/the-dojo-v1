@@ -27,7 +27,7 @@ export const useLogout = () => {
 
       // update state
       if (!isCancelled) {
-        console.log("logoust");
+        // console.log("logoust");
         setIsPending(false);
         setError(null);
       }
@@ -41,7 +41,7 @@ export const useLogout = () => {
 
   useEffect(() => {
     return () => {
-      console.log("useLogout CLEAR UP");
+      // console.log("useLogout CLEAR UP");
       // setIsCancelled(true);
     };
   }, []);

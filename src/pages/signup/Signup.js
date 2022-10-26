@@ -14,7 +14,7 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password, displayName, thumbnail);
+    // console.log(email, password, displayName, thumbnail);
     signup(email, password, displayName, thumbnail);
   };
 
@@ -41,7 +41,7 @@ function Signup() {
     setThumbnailError(null);
     setThumbnail(selected);
 
-    console.log("thumbnail updated");
+    // console.log("thumbnail updated");
   };
 
   return (

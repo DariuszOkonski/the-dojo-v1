@@ -38,7 +38,7 @@ export const useLogin = () => {
 
   useEffect(() => {
     return () => {
-      console.log("useLogin CLEAR UP");
+      // console.log("useLogin CLEAR UP");
       // setIsCancelled(true);
     };
   }, []);
