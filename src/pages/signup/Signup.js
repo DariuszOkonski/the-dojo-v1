@@ -1,47 +1,48 @@
-import { useState } from 'react'
-import { useSignup } from '../../hooks/useSignup'
-import './Signup.css'
+import { useState } from "react";
+import Loading from "../../components/Loading";
+import { useSignup } from "../../hooks/useSignup";
+import "./Signup.css";
 
 function Signup() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [displayName, setDisplayName] = useState('')
-  const [thumbnail, setThumbnail] = useState(null)
-  const [thumbnailError, setThumbnailError] = useState(null)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [thumbnail, setThumbnail] = useState(null);
+  const [thumbnailError, setThumbnailError] = useState(null);
 
-  const { signup, error, isPending } = useSignup()
+  const { signup, error, isPending } = useSignup();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(email, password, displayName, thumbnail)
-    signup(email, password, displayName, thumbnail)
-  }
+    e.preventDefault();
+    console.log(email, password, displayName, thumbnail);
+    signup(email, password, displayName, thumbnail);
+  };
 
   const handleFileChange = (e) => {
-    setThumbnail(null)
+    setThumbnail(null);
 
-    let selected = e.target.files[0]
+    let selected = e.target.files[0];
 
     if (!selected) {
-      setThumbnailError('Please select a file')
-      return
+      setThumbnailError("Please select a file");
+      return;
     }
 
-    if (!selected.type.includes('image')) {
-      setThumbnailError('Selected file must be an image')
-      return
+    if (!selected.type.includes("image")) {
+      setThumbnailError("Selected file must be an image");
+      return;
     }
 
     if (selected.size > 100000) {
-      setThumbnailError('Image file size must be less than 100kb')
-      return
+      setThumbnailError("Image file size must be less than 100kb");
+      return;
     }
 
-    setThumbnailError(null)
-    setThumbnail(selected)
+    setThumbnailError(null);
+    setThumbnail(selected);
 
-    console.log('thumbnail updated')
-  }
+    console.log("thumbnail updated");
+  };
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
@@ -53,7 +54,7 @@ function Signup() {
           required
           value={email}
           onChange={(e) => {
-            setEmail(e.target.value)
+            setEmail(e.target.value);
           }}
         />
       </label>
@@ -80,16 +81,11 @@ function Signup() {
         <input required type="file" onChange={handleFileChange} />
         {thumbnailError && <div className="error">{thumbnailError}</div>}
       </label>
-
-      {!isPending && <button className="btn">Sign up</button>}
-      {isPending && (
-        <button className="btn" disabled>
-          Loading...
-        </button>
-      )}
+      <button className="btn">Sign up</button>
+      {isPending && <Loading />}
       {error && <div className="error">{error}</div>}
     </form>
-  )
+  );
 }
 
-export default Signup
+export default Signup;
