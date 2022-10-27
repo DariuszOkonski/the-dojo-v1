@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Loading from "./components/Loading";
 import Navbar from "./components/Navbar";
+import OnlineUsers from "./components/OnlineUsers";
 import Sidebar from "./components/Sidebar";
 import { useAuthContext } from "./hooks/useAuthContext";
 import Create from "./pages/create/Create";
@@ -44,6 +45,7 @@ function App() {
               />
             </Routes>
           </div>
+          {user && <OnlineUsers />}
         </BrowserRouter>
       ) : (
         <Loading />
