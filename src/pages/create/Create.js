@@ -18,7 +18,8 @@ function Create() {
   const [details, setDetails] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [category, setCategory] = useState("");
-  const [assignedUsers, setAssignedUsers] = useState("");
+  const [assignedUsers, setAssignedUsers] = useState([]);
+  const [formError, setFormError] = useState(null);
 
   useEffect(() => {
     if (documents) {
@@ -32,6 +33,26 @@ function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormError(null);
+
+    if (!name) {
+      return setFormError("Please assign a name to project name");
+    }
+
+    if (!details)
+      return setFormError("Please add description to project details");
+
+    if (!dueDate) return setFormError("You have to choose a date");
+
+    if (!category) {
+      setFormError("Please select a project category");
+      return;
+    }
+
+    if (assignedUsers.length < 1) {
+      setFormError("Please assign the project ot at least 1 user");
+      return;
+    }
 
     console.log(name, details, dueDate, category.value, assignedUsers);
   };
@@ -43,7 +64,6 @@ function Create() {
         <label>
           <span>Project name:</span>
           <input
-            required
             type="text"
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -52,7 +72,6 @@ function Create() {
         <label>
           <span>Project details:</span>
           <textarea
-            required
             type="text"
             onChange={(e) => setDetails(e.target.value)}
             value={details}
@@ -61,7 +80,6 @@ function Create() {
         <label>
           <span>Set due date::</span>
           <input
-            required
             type="date"
             onChange={(e) => setDueDate(e.target.value)}
             value={dueDate}
@@ -83,6 +101,7 @@ function Create() {
           />
         </label>
         <button className="btn">Add Project</button>
+        {formError && <p className="error">{formError}</p>}
       </form>
     </div>
   );
