@@ -26,7 +26,6 @@ export const useDocument = (collection, id) => {
     );
 
     return () => {
-      console.log("useDocument hook => unsubscribe");
       unsubscribe();
     };
   }, [collection, id]);
